@@ -1,3 +1,9 @@
+import { nanoid } from 'nanoid'
+
+
+// npm i formik
+
+
 export const App = () => {
   return (
     <div
