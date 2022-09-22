@@ -70,9 +70,4 @@ export const InputFormPhone = () => {
                     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                     required
                     />  
-            </lable>
-                <button type="submit">Add</button>
-            </Form>
-        </Formik>
-    );
-}
+  
