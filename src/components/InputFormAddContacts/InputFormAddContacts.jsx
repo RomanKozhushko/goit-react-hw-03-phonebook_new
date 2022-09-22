@@ -53,9 +53,4 @@ export const InputFormPhone = () => {
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form autoComplete="off">
             <lable htmlFor="name">
-                Full Name
-                <Input
-                    type="text"
-                    name="name"
-                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            
+                Full Nam
