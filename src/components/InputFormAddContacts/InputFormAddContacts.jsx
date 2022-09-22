@@ -49,6 +49,3 @@ export const InputFormPhone = () => {
 }
 
 
-
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-   
