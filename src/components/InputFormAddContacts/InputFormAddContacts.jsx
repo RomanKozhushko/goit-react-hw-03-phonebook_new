@@ -51,6 +51,4 @@ export const InputFormPhone = () => {
 
 
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <Form autoComplete="off">
-            <lable htmlFor="name">
-                Full Nam
+   
