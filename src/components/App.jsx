@@ -1,12 +1,11 @@
-import { Component } from 'react';
-import { nanoid } from 'nanoid';
-import { ContactList } from './ContactsList';
+import {Component} from 'react';
+import { InputForm } from './InputForm';
 import { Filter } from './Filter';
-import { InputFormPhone } from './InputFormAddContacts/InputFormAddContacts';
-import { SectionsForm } from './SectionPhoneBook';
+import { ContactList } from './ContactList';
 import { PhonebookBox } from './Phonebook.styled';
-import { ContactListBox } from './ContactListBox.styled';
-import { render } from '@testing-library/react';
+import { InputFormBox } from './inputForm.styled';
+import { ContactListBox } from './ContactList.styled';
+import { nanoid } from 'nanoid';
 
 export class App extends Component {
   state = {
