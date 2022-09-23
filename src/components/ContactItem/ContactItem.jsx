@@ -6,8 +6,7 @@ export function ContactItem({ contact, idx, method }) {
         <ListItem>
             <NumByOrder>{idx + 1}</NumByOrder>
             {contact.name}: <TelNum>{contact.number}</TelNum>
-            <DelBtn type='button' onClick={
-                () => method(contact.id)}>Delete</DelBtn>
+            <DelBtn type='button' onClick={() => method(contact.id)}>Delete</DelBtn>
         </ListItem>
     )
 }
