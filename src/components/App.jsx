@@ -18,6 +18,20 @@ export class App extends Component {
     filter: '',
    
   }
+//Запис в локал сторидж
+    componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== this.state) {
+      localStorage.setItem("Contacts", JSON.stringify(this.state.contacts))
+    }
+  }
+//Парс з локал сториджа
+  componentDidMount() {
+    const contactsList = localStorage.getItem("Contacts");
+    const parsedContactsList = JSON.parse(contactsList);
+    if (parsedContactsList) {
+      this.setState({ contacts: parsedContactsList });
+    }
+  }
 
   // Підтвердження збереження контакту!
   submitHandle = (data) => {
