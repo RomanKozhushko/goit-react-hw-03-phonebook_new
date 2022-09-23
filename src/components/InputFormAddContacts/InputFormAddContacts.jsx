@@ -1,3 +1,4 @@
+
 import { Formik, Form, Field, } from 'formik';
 import styled from 'styled-components';
 // import * as  yup from 'yup';
@@ -13,7 +14,7 @@ const initialValues = {
    phoneNumber: "",
 }
 
-export const InputFormPhone = () => {
+const InputFormPhone = () => {
     const handleSubmit = (values, {resetForm}) => {
         console.log(values);
         resetForm();
@@ -49,3 +50,4 @@ export const InputFormPhone = () => {
 }
 
 
+export default InputFormPhone;

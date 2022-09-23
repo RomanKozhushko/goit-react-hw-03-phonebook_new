@@ -9,7 +9,7 @@ export const Filter = ({ filter, filterChange }) => {
             onChange={event => filterChange(event)} />
     </div>)
 }
-Filter.PropTypes = {
+Filter.propTypes = {
     filter: PropTypes.string,
     filterChange: PropTypes.func,
 }
