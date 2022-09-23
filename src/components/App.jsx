@@ -1,28 +1,85 @@
 import { Component } from 'react';
-// import { nanoid } from 'nanoid'
-// import { render } from '@testing-library/react';
-import {InputFormPhone} from './InputFormAddContacts/InputFormAddContacts'
-
-
-// state = {
-//   contacts: [
-//     {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-//     {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-//     {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-//     {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-//   ],
-//   filter: '',
-//   name: '',
-//   number: ''
-// }
+import { nanoid } from 'nanoid';
+import { ContactList } from './ContactsList';
+import { Filter } from './Filter';
+import { InputFormPhone } from './InputFormAddContacts/InputFormAddContacts';
+import { SectionsForm } from './SectionPhoneBook';
+import { PhonebookBox } from './Phonebook.styled';
+import { ContactListBox } from './ContactListBox.styled';
+import { render } from '@testing-library/react';
 
 export class App extends Component {
-  render() {
-    return (
-      <>
-      <InputFormPhone />
-      </>
-
-    )
+  state = {
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    filter: '',
+    name: '',
+    number: ''
   }
+
+  // Підтвердження збереження контакту!
+  submitHandle = (data) => {
+
+    //Заборони користувачеві можливість додавати контакти, імена яких вже присутні у телефонній книзі.
+    const sameName = this.state.contacts.find(element => (element.name.toLowerCase() === data.name.toLowerCase()));
+    // При спробі виконати таку дію виведи alert із попередженням.
+    if (sameName)
+      return
+    alert(sameName.name + " is already in contacts!");
+
+    //Присвоювання ID та запис у контакти!
+    data.id = nanoid();
+    this.setState(prev => ({ contacts: [data, ...prev.contacts] }))
+  }
+
+  // Пошук необхідного контакту
+  filterContacts = (event) => {
+    event.preventDefault();
+    this.setState({ filter: event.currentTarget.value })
+  }
+
+  // Видалення раніше збережених контактів
+  onDeleted = (id) => {
+    this.setState(prev => ({
+      contacts: prev.contacts.filter(
+        contact => contact.id !== id)
+    }))
+  }
+  
+  render() {
+    const { filter, contacts } = this.state;
+    const normalizeFilter = filter.toLowerCase();
+    const filteredContacts = contacts.filter(
+      contact => (contact.name.toLowerCase().includes(normalizeFilter)));
+
+    return (
+      <PhonebookBox>
+        <InputFormBox>
+          <h1>Phonebook</h1>
+          <InputForm submitHandle={this.submitHandle} />
+        </InputFormBox>
+        <ContactListBox>
+          <h2>Contact List</h2>
+          <Filter filter={filter} filterChange={this.filterContacts} />
+          {contacts.length ?
+            <ContactList contacts={filteredContacts} onDelete={this.onDelete} /> :
+            <p>No any contacts</p>}
+        </ContactListBox>
+      </PhonebookBox>
+    );
+  };
 }
+
+
+
+  
+
+
+  // При спробі виконати таку дію виведи alert із попередженням.
+
+
+
